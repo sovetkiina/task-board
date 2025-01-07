@@ -66,3 +66,56 @@ input[type="checkbox"] {
   margin-right: 2px;
   opacity: 0.3;
 }
+
+
+/* настройки переменных для цветов тегов */
+.work,
+.note:has(.work) {
+  /* рабочий */
+  --tagColor: #fcdbcf;
+}
+
+.personal,
+.note:has(.personal) {
+  /* личный */
+  --tagColor: #ccdcff;
+}
+.read,
+.note:has(.read) {
+  /* почитать */
+  --tagColor: #f9cafc;
+}
+
+/* настройки цвета фона тегов */
+.work,
+.personal,
+.read {
+  /* берём значение фона из переменных */
+  background-color: var(--tagColor);
+}
+
+
+/* настройки карточки */
+.note {
+  background-color: #fff;
+  border: 1px solid #ebebeb;
+  box-sizing: border-box;
+  line-height: 1.5;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 300ms ease-in-out 0s;
+  width: 31%;
+  height: 160px;
+  padding: 3%;
+  margin: 1%;
+  opacity: 1;
+  border-width: 1px;
+}
+
+.note:hover {
+  border-color: var(--tagColor);
+}
