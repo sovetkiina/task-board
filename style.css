@@ -23,3 +23,46 @@
   top: 0;
   transform: translateX(-50%);
 }
+
+/* скрываем флажок у чекбокса */
+input[type="checkbox"] {
+  display: none;
+}
+
+.pos-abs {
+  position: absolute;
+  top: -50px;
+  margin: 8px;
+  margin-top: 8px !important;
+}
+
+.pos-abs.personal {
+  left: 102px;
+}
+
+.pos-abs.read {
+  left: 208px;
+}
+
+/* общие настройки для тегов */
+.tag {
+  padding: 6px 12px;
+  /* подгоняем размер блока под содержимое */
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 9999px;
+  margin-top: 12px;
+  /* запрещаем выделять мышкой этот элемент */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* добавляем хештег перед тегом */
+.tag::before {
+  content: "#";
+  margin-right: 2px;
+  opacity: 0.3;
+}
