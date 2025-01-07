@@ -1,0 +1,25 @@
+/* подключаем внешний шрифт */
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+/* общие настройки */
+#wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #333333;
+  font-family: "Inter", sans-serif;
+}
+
+.flexDiv {
+  display: flex;
+  position: absolute;
+  margin-top: 60px;
+  width: 90vw;
+  flex-wrap: wrap;
+  max-width: 800px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
