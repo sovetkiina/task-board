@@ -3,7 +3,8 @@ const workCheckbox = document.getElementById("work-box");
 const personalCheckbox = document.getElementById("personal-box");
 const readCheckbox = document.getElementById("read-box");
 const addButton = document.querySelector(".task-board__filter-add-button");
-const addCardPopup = document.querySelector(".popup_type_task")
+const addCardPopup = document.querySelector(".popup_type_task");
+const popupClose = document.querySelector(".popup__close");
 
 const cardsData = [
   { text: "Добавить анимацию при наведении на кнопки", tag: "work" },
@@ -69,12 +70,43 @@ readCheckbox.addEventListener("change", filterCards);
 // Инициализируем отображение карточек
 filterCards();
 
-// Открытие попапа добавления новой задачи 
+// Открытие попапа добавления новой задачи
 function openModal(popup) {
   popup.classList.add("popup_is-opened");
   popup.classList.remove("popup_is-animated");
+  document.addEventListener("keydown", handleEscClose);
+  popup.addEventListener("click", handleOverlayClose);
+}
+
+// Функция для закрытия попапа
+function closeModal(popup) {
+  popup.classList.remove("popup_is-opened");
+  popup.classList.add("popup_is-animated");
+  document.removeEventListener("keydown", handleEscClose);
+  popup.removeEventListener("click", handleOverlayClose);
 }
 
 addButton.addEventListener("click", () => {
   openModal(addCardPopup);
 });
+
+popupClose.addEventListener("click", () => {
+  closeModal(addCardPopup);
+});
+
+// Обработчик закрытия попапа по нажатию клавиши Esc
+function handleEscClose(evt) {
+  if (evt.key === "Escape") {
+    const openPopup = document.querySelector(".popup_is-opened");
+    if (openPopup) {
+      closeModal(openPopup);
+    }
+  }
+}
+
+// Обработчик закрытия попапа по клику на оверлей
+function handleOverlayClose(evt) {
+  if (evt.target === evt.currentTarget) {
+    closeModal(evt.currentTarget);
+  }
+}

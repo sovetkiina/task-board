@@ -177,7 +177,8 @@ label:hover {
   font-size: 14px;
   line-height: 18px;
   box-sizing: border-box;
-  margin-bottom: 0px;
+  margin-bottom: 15px;
+  padding-top: 10px;
 }
 
 .popup__input:last-of-type {
@@ -278,8 +279,6 @@ label:hover {
   }
 
   .popup__content {
-    width: 100%;
-    max-width: calc(100% - 80px);
     margin-top: 20px;
     padding: 20px 18px;
   }
