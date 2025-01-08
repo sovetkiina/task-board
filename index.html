@@ -11,96 +11,90 @@
       name="description"
       content="Управляйте задачами, отслеживайте прогресс и организуйте работу в удобной доске задач."
     />
-    <!-- <link rel="stylesheet" href="styles/variables.css" />-->
+    <link rel="stylesheet" href="styles/globals.css" />
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body>
-    <div id="wrapper">
-      <!-- блок с карточками -->
-      <div class="flexDiv">
-        <!-- теги для фильтра -->
-        <!-- тег — это чекбокс -->
+  <body class="body">
+    <div class="task-board">
+      <div class="task-board__filter">
         <input type="checkbox" id="work-box" checked />
-        <!-- подписываем его -->
         <label for="work-box">
-          <!-- и указываем название и классы -->
           <div class="tag work pos-abs">Работа</div>
         </label>
-        <!-- делаем то же самое для двух остальных тегов -->
         <input type="checkbox" id="personal-box" checked />
         <label for="personal-box">
           <div class="tag personal pos-abs">Личное</div>
         </label>
-
         <input type="checkbox" id="read-box" checked />
         <label for="read-box">
           <div class="tag read pos-abs">Почитать</div>
         </label>
-
-        <!-- Карточки -->
-        <div class="note">
-          <!-- текст карточки -->
-          Поправить иконки в дизайн-системе
-          <!-- тег -->
+      </div>
+      <div class="task-board__cards">
+        <div class="task-board__card">
+          <p class="task-card__text">
+            Добавить анимацию при наведении на кнопки
+          </p>
           <div class="tag work">Работа</div>
         </div>
-        <div class="note">
-          Добавить анимацию при наведении на кнопки
+        <div class="task-board__card">
+          <p class="task-card__text">
+            Сделать возможность перетаскивания карточек
+          </p>
           <div class="tag work">Работа</div>
         </div>
-        <div class="note">
-          Сделать возможность перетаскивания карточек
-          <div class="tag work">Работа</div>
-        </div>
-        <div class="note">
-          Сходить на лекцию по йоге
+        <div class="task-board__card">
+          <p class="task-card__text">Сходить на лекцию по йоге</p>
           <div class="tag personal">Личное</div>
         </div>
-        <div class="note">
-          Позвонить в фитнес-центр
+        <div class="task-board__card">
+          <p class="task-card__text">Позвонить в фитнес-центр</p>
           <div class="tag personal">Личное</div>
         </div>
-        <div class="note">
-          «Чапаев и Пустота» / Виктор Пелевин
+        <div class="task-board__card">
+          <p class="task-card__text">«Чапаев и Пустота» / Виктор Пелевин</p>
           <div class="tag read">Почитать</div>
         </div>
-        <div class="note">
-          Atomic Habits / James Clear
+        <div class="task-board__card">
+          <p class="task-card__text">Atomic Habits / James Clear</p>
           <div class="tag read">Почитать</div>
         </div>
-        <div class="note">
-          «Ясно, понятно» / Максим Ильяхов
+        <div class="task-board__card">
+          <p class="task-card__text">«Ясно, понятно» / Максим Ильяхов</p>
           <div class="tag read">Почитать</div>
         </div>
-        <div class="note">
-          Добавить сортировку карточек
+        <div class="task-board__card">
+          <p class="task-card__text">Добавить сортировку карточек</p>
           <div class="tag work">Работа</div>
         </div>
-        <div class="note">
-          Оплатить коммуналку
+        <div class="task-board__card">
+          <p class="task-card__text">Оплатить коммуналку</p>
           <div class="tag personal">Личное</div>
         </div>
-        <div class="note">
-          Искусство тренировок / Геральт из Ривии
+        <div class="task-board__card">
+          <p class="task-card__text">Искусство тренировок / Геральт из Ривии</p>
           <div class="tag read">Почитать</div>
         </div>
-        <div class="note">
-          Купить шампунь
+        <div class="task-board__card">
+          <p class="task-card__text">Купить шампунь</p>
           <div class="tag personal">Личное</div>
         </div>
-        <div class="note">
-          Отправить код на проверку тимлиду
+        <div class="task-board__card">
+          <p class="task-card__text">Отправить код на проверку тимлиду</p>
           <div class="tag work">Работа</div>
         </div>
-        <div class="note">
-          Посмотреть, вышел ли новый Javascript-фреймворк
+        <div class="task-board__card">
+          <p class="task-card__text">
+            Посмотреть, вышел ли новый Javascript-фреймворк
+          </p>
           <div class="tag work">Работа</div>
         </div>
-        <div class="note">
-          Сделать брелок от домофона
+        <div class="task-board__card">
+          <p class="task-card__text">Сделать брелок от домофона</p>
           <div class="tag personal">Личное</div>
         </div>
       </div>
     </div>
+  <script src="./scripts/script.js" defer></script>
   </body>
 </html>

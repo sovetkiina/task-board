@@ -1,121 +1,135 @@
 /* подключаем внешний шрифт */
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
 
-/* общие настройки */
-#wrapper {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  color: #333333;
-  font-family: "Inter", sans-serif;
+.task-board {
+  box-sizing: border-box;
+  margin-block: 60px;
 }
 
-.flexDiv {
+.task-board__filter {
   display: flex;
-  position: absolute;
-  margin-top: 60px;
+  justify-content: center;
+  gap: 16px;
+  margin-block-end: 24px;
   width: 90vw;
   flex-wrap: wrap;
-  max-width: 800px;
-  left: 50%;
-  top: 0;
-  transform: translateX(-50%);
+  width: 100%;
 }
 
-/* скрываем флажок у чекбокса */
+.task-board__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  padding-inline: 30px;
+}
+
 input[type="checkbox"] {
   display: none;
 }
 
-.pos-abs {
-  position: absolute;
-  top: -50px;
-  margin: 8px;
-  margin-top: 8px !important;
-}
-
-.pos-abs.personal {
-  left: 102px;
-}
-
-.pos-abs.read {
-  left: 208px;
-}
-
-/* общие настройки для тегов */
 .tag {
   padding: 6px 12px;
-  /* подгоняем размер блока под содержимое */
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   border-radius: 9999px;
   margin-top: 12px;
-  /* запрещаем выделять мышкой этот элемент */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
 
-/* добавляем хештег перед тегом */
 .tag::before {
   content: "#";
   margin-right: 2px;
   opacity: 0.3;
 }
 
-
-/* настройки переменных для цветов тегов */
 .work,
-.note:has(.work) {
-  /* рабочий */
+.task-board__card:has(.work) {
   --tagColor: #fcdbcf;
 }
 
 .personal,
-.note:has(.personal) {
-  /* личный */
+.task-board__card:has(.personal) {
   --tagColor: #ccdcff;
 }
 .read,
-.note:has(.read) {
-  /* почитать */
+.task-board__card:has(.read) {
   --tagColor: #f9cafc;
 }
 
-/* настройки цвета фона тегов */
 .work,
 .personal,
 .read {
-  /* берём значение фона из переменных */
   background-color: var(--tagColor);
 }
 
-
-/* настройки карточки */
-.note {
-  background-color: #fff;
+.task-board__card {
+  background-color: #ffffff;
   border: 1px solid #ebebeb;
   box-sizing: border-box;
   line-height: 1.5;
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+  padding: 10px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: all 300ms ease-in-out 0s;
-  width: 31%;
-  height: 160px;
-  padding: 3%;
-  margin: 1%;
-  opacity: 1;
-  border-width: 1px;
 }
 
-.note:hover {
+.task-board__card:hover {
   border-color: var(--tagColor);
+}
+
+#work-box:checked + label div,
+#personal-box:checked + label div,
+#read-box:checked + label div {
+  background-color: var(--tagColor);
+  color: unset;
+}
+
+#work-box + label div,
+#personal-box + label div,
+#read-box + label div {
+  background-color: white;
+  border: 1px solid var(--tagColor);
+  color: var(--tagColor);
+}
+
+label {
+  cursor: pointer;
+}
+
+label:hover {
+  opacity: 0.8;
+}
+
+@media (max-width: 545px) {
+  #work-box:checked ~ .task-board__card:has(.work),
+  #personal-box:checked ~ .task-board__card:has(.personal),
+  #read-box:checked ~ .task-board__card:has(.read) {
+    width: 80%;
+    height: 160px;
+    padding: 2%;
+    margin: 1%;
+    opacity: 1;
+    border-width: 1px;
+  }
+
+  .task-board__filter {
+    display: flex;
+    justify-content: center;
+  }
+
+  .task-board__cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding-inline: 15px;
+  }
 }
