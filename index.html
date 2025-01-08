@@ -12,23 +12,29 @@
       content="Управляйте задачами, отслеживайте прогресс и организуйте работу в удобной доске задач."
     />
     <link rel="stylesheet" href="styles/globals.css" />
+    <link rel="stylesheet" href="styles/variables.css" />
     <link rel="stylesheet" href="styles/style.css" />
   </head>
   <body class="body">
     <div class="task-board">
       <div class="task-board__filter">
-        <input type="checkbox" id="work-box" checked />
-        <label for="work-box">
-          <div class="tag work pos-abs">Работа</div>
-        </label>
-        <input type="checkbox" id="personal-box" checked />
-        <label for="personal-box">
-          <div class="tag personal pos-abs">Личное</div>
-        </label>
-        <input type="checkbox" id="read-box" checked />
-        <label for="read-box">
-          <div class="tag read pos-abs">Почитать</div>
-        </label>
+        <div class="task-board__filter-items">
+          <input type="checkbox" id="work-box" checked />
+          <label for="work-box">
+            <div class="tag work pos-abs">Работа</div>
+          </label>
+          <input type="checkbox" id="personal-box" checked />
+          <label for="personal-box">
+            <div class="tag personal pos-abs">Личное</div>
+          </label>
+          <input type="checkbox" id="read-box" checked />
+          <label for="read-box">
+            <div class="tag read pos-abs">Почитать</div>
+          </label>
+        </div>
+        <div class="task-board__filter-button">
+          <button class="task-board__filter-add-button" type="button"></button>
+        </div>
       </div>
       <div class="task-board__cards">
         <div class="task-board__card">
@@ -95,6 +101,41 @@
         </div>
       </div>
     </div>
-  <script src="./scripts/script.js" defer></script>
+
+    <div class="popup popup_type_task">
+      <div class="popup__content">
+        <button type="button" class="popup__close"></button>
+        <h1 class="popup__title">Новая задача</h1>
+        <form class="popup__form" name="new-task" novalidate>
+          <input
+            type="text-type"
+            name="task-type"
+            id="task"
+            class="popup__input popup__input_type_task"
+            minlength="2"
+            maxlength="30"
+            placeholder="Тип задачи"
+            pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+            required
+          />
+          <input
+            type="text-title"
+            name="task-title"
+            id="task"
+            class="popup__input popup__input_type_task"
+            minlength="2"
+            maxlength="30"
+            placeholder="Задача"
+            pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
+            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
+            required
+          />
+          <span id="task-link-error" class="popup__error"></span>
+          <button type="submit" class="button popup__button">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <script src="./scripts/script.js" defer></script>
   </body>
 </html>

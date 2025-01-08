@@ -2,6 +2,8 @@ const cardsContainer = document.querySelector(".task-board__cards");
 const workCheckbox = document.getElementById("work-box");
 const personalCheckbox = document.getElementById("personal-box");
 const readCheckbox = document.getElementById("read-box");
+const addButton = document.querySelector(".task-board__filter-add-button");
+const addCardPopup = document.querySelector(".popup_type_task")
 
 const cardsData = [
   { text: "Добавить анимацию при наведении на кнопки", tag: "work" },
@@ -66,3 +68,13 @@ readCheckbox.addEventListener("change", filterCards);
 
 // Инициализируем отображение карточек
 filterCards();
+
+// Открытие попапа добавления новой задачи 
+function openModal(popup) {
+  popup.classList.add("popup_is-opened");
+  popup.classList.remove("popup_is-animated");
+}
+
+addButton.addEventListener("click", () => {
+  openModal(addCardPopup);
+});

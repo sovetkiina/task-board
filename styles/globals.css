@@ -7,11 +7,11 @@
 .body {
   min-inline-size: 375px;
   margin: 0 auto;
-  color: #333333;
+  color: var(--main-text-color);
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  line-height: 23.4px;
+  line-height: 23px;
 }
 
 h1,

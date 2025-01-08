@@ -4,16 +4,24 @@
 .task-board {
   box-sizing: border-box;
   margin-block: 60px;
+  padding-inline: 30px;
 }
 
 .task-board__filter {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: end;
   gap: 16px;
   margin-block-end: 24px;
   width: 90vw;
   flex-wrap: wrap;
   width: 100%;
+}
+
+.task-board__filter-items {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
 .task-board__cards {
@@ -22,7 +30,6 @@
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  padding-inline: 30px;
 }
 
 input[type="checkbox"] {
@@ -50,16 +57,16 @@ input[type="checkbox"] {
 
 .work,
 .task-board__card:has(.work) {
-  --tagColor: #fcdbcf;
+  --tagColor: var(--tag-work-color);
 }
 
 .personal,
 .task-board__card:has(.personal) {
-  --tagColor: #ccdcff;
+  --tagColor: var(--tag-personal-color);
 }
 .read,
 .task-board__card:has(.read) {
-  --tagColor: #f9cafc;
+  --tagColor: var(--tag-read-color);
 }
 
 .work,
@@ -69,12 +76,12 @@ input[type="checkbox"] {
 }
 
 .task-board__card {
-  background-color: #ffffff;
-  border: 1px solid #ebebeb;
+  background-color: var(--card-bg-color);
+  border: 1px solid var(--card-border-color);
   box-sizing: border-box;
   line-height: 1.5;
   border-radius: 8px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+  box-shadow: var(--card-box-shadow) 0px 1px 4px;
   padding: 10px;
   overflow: hidden;
   display: flex;
@@ -97,7 +104,7 @@ input[type="checkbox"] {
 #work-box + label div,
 #personal-box + label div,
 #read-box + label div {
-  background-color: white;
+  background-color: var(--card-bg-color);
   border: 1px solid var(--tagColor);
   color: var(--tagColor);
 }
@@ -110,26 +117,180 @@ label:hover {
   opacity: 0.8;
 }
 
-@media (max-width: 545px) {
-  #work-box:checked ~ .task-board__card:has(.work),
-  #personal-box:checked ~ .task-board__card:has(.personal),
-  #read-box:checked ~ .task-board__card:has(.read) {
-    width: 80%;
-    height: 160px;
-    padding: 2%;
-    margin: 1%;
-    opacity: 1;
-    border-width: 1px;
+.task-board__filter-add-button {
+  width: 130px;
+  height: 40px;
+  background: transparent url("../images/add-icon.svg") center no-repeat;
+  background-size: 18px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  border: 2px solid var(--button-border-color);
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.task-board__filter-add-button:hover {
+  opacity: var(--button-hover-opacity);
+}
+
+.popup {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--popup-backdrop-color);
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+}
+
+.popup__title {
+  margin: 0;
+  font-size: 18px;
+  line-height: 15px;
+}
+
+.popup__content {
+  max-width: 300px;
+  width: 100%;
+  min-height: 200px;
+  background-color: var(--popup-bg-color);
+  border-radius: 10px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 24px 26px;
+}
+
+.popup__form {
+  margin-top: 15px;
+}
+
+.popup__input {
+  width: 100%;
+  height: 30px;
+  border: 0;
+  border-bottom: 1px solid var(--input-border);
+  font-size: 14px;
+  line-height: 18px;
+  box-sizing: border-box;
+  margin-bottom: 0px;
+}
+
+.popup__input:last-of-type {
+  margin-bottom: 0;
+}
+
+.popup__input_type_error {
+  border-bottom-color: var(--input-error);
+}
+
+.popup__error_visible {
+  display: block;
+  color: var(--input-error);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  text-align: left;
+  position: absolute;
+}
+
+.popup__close {
+  width: 35px;
+  height: 35px;
+  background: transparent url("../images/close-icon.svg") center no-repeat;
+  background-size: 20px 20px;
+  border: none;
+  position: absolute;
+  top: -36px;
+  right: -34px;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  transition: visibility 0s, opacity 0.3s;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+}
+
+.popup__close:hover {
+  opacity: 0.6;
+}
+
+.popup__button {
+  width: 100%;
+  height: 40px;
+  font-size: 18px;
+  line-height: 22px;
+  color: var(--popup-btn-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--popupp-btn-bg-color);
+  border-radius: 2px;
+  border: none;
+  transition: visibility 0s, background 0.3s;
+  margin-top: 30px;
+}
+
+.popup__button:hover {
+  opacity: 0.6;
+}
+
+.popup_is-opened {
+  display: flex;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: all;
+  transition: visibility 0s, opacity 0.6s;
+}
+
+.popup_is-animated {
+  display: flex;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+  transition: visibility 0s 0.6s, opacity 0.6s;
+}
+
+@media (width <= 576px) {
+  .task-board {
+    margin-block: 40px;
+    padding-inline: 15px;
   }
 
   .task-board__filter {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 
   .task-board__cards {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-    padding-inline: 15px;
+  }
+
+  .popup__content {
+    width: 100%;
+    max-width: calc(100% - 80px);
+    margin-top: 20px;
+    padding: 20px 18px;
+  }
+
+  .popup__title {
+    font-size: 15px;
+    line-height: 10px;
+  }
+
+  .popup__button {
+    font-size: 14px;
+    line-height: 17px;
   }
 }

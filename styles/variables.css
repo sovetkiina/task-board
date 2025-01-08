@@ -1,0 +1,22 @@
+:root {
+  --main-text-color: #333;
+  /* Цвета для тегов */
+  --tag-work-color: #fcdbcf;
+  --tag-personal-color: #ccdcff;
+  --tag-read-color: #f9cafc;
+  /* Цвета для кнопки */
+  --button-border-color: rgba(0, 0, 0, 0.4);
+  --button-hover-opacity: 0.3;
+  /* Цвета фона и границ */
+  --card-bg-color: #fff;
+  --card-border-color: #ebebeb;
+  --card-box-shadow: rgba(0, 0, 0, 0.05);
+  /* цвета попапа */
+  --popup-bg-color: #fff;
+  --popup-btn-text:  #fff;
+  --popupp-btn-bg-color: #000;
+  --popup-backdrop-color: rgba(0, 0, 0, 0.6);
+  /* цвета полей  */
+  --input-border: rgba(0, 0, 0, 0.2);
+  --input-error: #F00;
+}
