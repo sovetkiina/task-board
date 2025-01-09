@@ -155,7 +155,7 @@ label:hover {
 }
 
 .popup__content {
-  max-width: 300px;
+  max-width: 360px;
   width: 100%;
   min-height: 200px;
   background-color: var(--popup-bg-color);
@@ -163,10 +163,6 @@ label:hover {
   position: relative;
   box-sizing: border-box;
   padding: 24px 26px;
-}
-
-.popup__form {
-  margin-top: 15px;
 }
 
 .popup__input {
@@ -177,7 +173,7 @@ label:hover {
   font-size: 14px;
   line-height: 18px;
   box-sizing: border-box;
-  margin-bottom: 15px;
+  margin-top: 27px;
   padding-top: 10px;
 }
 
@@ -193,7 +189,6 @@ label:hover {
   display: block;
   color: var(--input-error);
   font-size: 12px;
-  font-weight: 400;
   line-height: 14px;
   text-align: left;
   position: absolute;

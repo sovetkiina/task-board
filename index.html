@@ -108,31 +108,28 @@
         <h1 class="popup__title">Новая задача</h1>
         <form class="popup__form" name="new-task" novalidate>
           <input
-            type="text-type"
+            type="text"
             name="task-type"
-            id="task"
+            id="task-type"
             class="popup__input popup__input_type_task"
             minlength="2"
             maxlength="30"
             placeholder="Тип задачи"
-            pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
-            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
             required
           />
+          <span class="popup__error" id="task-type-error"></span>
           <input
-            type="text-title"
+            type="text"
             name="task-title"
-            id="task"
+            id="task-title"
             class="popup__input popup__input_type_task"
             minlength="2"
-            maxlength="30"
+            maxlength="100"
             placeholder="Задача"
-            pattern="^[A-Za-zА-Яа-яЁё\s\-]+$"
-            data-error-message="Разрешены только латинские, кириллические буквы, знаки дефиса и пробелы"
             required
           />
-          <span id="task-link-error" class="popup__error"></span>
-          <button type="submit" class="button popup__button">Сохранить</button>
+          <span id="task-title-error" class="popup__error"></span>
+          <button type="submit" class="button popup__button">Добавить</button>
         </form>
       </div>
     </div>

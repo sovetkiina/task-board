@@ -110,3 +110,54 @@ function handleOverlayClose(evt) {
     closeModal(evt.currentTarget);
   }
 }
+
+
+const config = {
+  inputErrorClass: "popup__input_type_error", // Класс для ввода с ошибкой
+  errorClass: "popup__error_visible"          // Класс для сообщения об ошибке
+};
+
+// Функция для отображения ошибки валидации
+const showInputError = (formElement, inputElement, errorMessage, config) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.add(config.inputErrorClass);
+  errorElement.textContent = errorMessage;
+  errorElement.classList.add(config.errorClass);
+};
+
+// Функция для скрытия ошибки валидации
+const hideInputError = (formElement, inputElement, config) => {
+  const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+  inputElement.classList.remove(config.inputErrorClass);
+  errorElement.classList.remove(config.errorClass);
+  errorElement.textContent = "";
+};
+
+const checkInputValidity = (formElement, inputElement, config) => {
+  if (inputElement.validity.patternMismatch) {
+    inputElement.setCustomValidity(inputElement.dataset.errorMessage);
+  } else {
+    inputElement.setCustomValidity("");
+  }
+
+  if (!inputElement.validity.valid) {
+    showInputError(
+      formElement,
+      inputElement,
+      inputElement.validationMessage,
+      config
+    );
+  } else {
+    hideInputError(formElement, inputElement, config);
+  }
+};
+
+// Пример обработки всех инпутов формы
+const form = document.querySelector(".popup__form");
+const inputs = form.querySelectorAll(".popup__input");
+
+inputs.forEach(input => {
+  input.addEventListener("input", () => {
+    checkInputValidity(form, input, config);
+  });
+});
