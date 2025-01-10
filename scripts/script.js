@@ -5,7 +5,35 @@ const readCheckbox = document.getElementById("read-box");
 const addButton = document.querySelector(".task-board__filter-add-button");
 const addCardPopup = document.querySelector(".popup_type_task");
 const popupClose = document.querySelector(".popup__close");
+const form = document.querySelector(".popup__form");
+const inputs = form.querySelectorAll(".popup__input");
+const taskTypeInput = document.getElementById("task-type");
+const taskTitleInput = document.getElementById("task-title");
 
+const tagMapping = {
+  работа: "work",
+  личное: "personal",
+  почитать: "read",
+};
+
+// Ключ для хранения данных в Local Storage
+const STORAGE_KEY = "taskBoardData";
+
+// Загружаем данные из Local Storage
+const loadCardsFromStorage = () => {
+  const savedData = localStorage.getItem(STORAGE_KEY);
+  return savedData ? JSON.parse(savedData) : [];
+};
+
+// Сохраняем данные в Local Storage
+const saveCardsToStorage = (cards) => {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(cards));
+};
+
+// Инициализируем данные карточек из Local Storage
+let cardsData = loadCardsFromStorage();
+
+/*
 const cardsData = [
   { text: "Добавить анимацию при наведении на кнопки", tag: "work" },
   { text: "Сделать возможность перетаскивания карточек", tag: "work" },
@@ -22,6 +50,7 @@ const cardsData = [
   { text: "Посмотреть, вышел ли новый Javascript-фреймворк", tag: "work" },
   { text: "Сделать брелок от домофона", tag: "personal" },
 ];
+*/
 
 // Функция для создания карточки
 const createCard = ({ text, tag }) => {
@@ -111,10 +140,9 @@ function handleOverlayClose(evt) {
   }
 }
 
-
 const config = {
   inputErrorClass: "popup__input_type_error", // Класс для ввода с ошибкой
-  errorClass: "popup__error_visible"          // Класс для сообщения об ошибке
+  errorClass: "popup__error_visible", // Класс для сообщения об ошибке
 };
 
 // Функция для отображения ошибки валидации
@@ -152,12 +180,45 @@ const checkInputValidity = (formElement, inputElement, config) => {
   }
 };
 
-// Пример обработки всех инпутов формы
-const form = document.querySelector(".popup__form");
-const inputs = form.querySelectorAll(".popup__input");
-
-inputs.forEach(input => {
+inputs.forEach((input) => {
   input.addEventListener("input", () => {
     checkInputValidity(form, input, config);
   });
+});
+
+// Обработчик отправки формы добавления новой задачи
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const taskType = taskTypeInput.value.trim().toLowerCase();
+  const taskTitle = taskTitleInput.value.trim();
+
+  // Проверяем, что все поля заполнены
+  if (!taskType || !taskTitle) {
+    return;
+  }
+
+  const mappedTag = tagMapping[taskType] || taskType;
+
+  // Проверяем валидность типа задачи
+  const validTags = ["work", "personal", "read"];
+  if (!validTags.includes(mappedTag)) {
+    return;
+  }
+
+  // Создаем новую карточку
+  const newCardData = { text: taskTitle, tag: mappedTag };
+
+  // Добавляем задачу в данные и Local Storage
+  cardsData.push(newCardData);
+
+  saveCardsToStorage(cardsData);
+  // Отображаем обновленные карточки
+  filterCards();
+
+  // Сбрасываем форму
+  form.reset();
+
+  // Закрываем попап
+  closeModal(addCardPopup);
 });
